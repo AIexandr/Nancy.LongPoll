@@ -22,6 +22,8 @@ var startPoll = function () {
     success: function (res) {
       if (res.success) {
         clientId = res.data;
+        seqCode = 0;
+
         if (!isPollConnected) {
           isPollConnected = true;
           try {

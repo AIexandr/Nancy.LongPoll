@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContentModule.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="PollModule.cs" />
     <Compile Include="PollService.cs" />

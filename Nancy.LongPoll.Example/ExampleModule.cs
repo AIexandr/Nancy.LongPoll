@@ -13,27 +13,9 @@ namespace Nancy.LongPoll.Example
     public ExampleModule()
     {
       Get["/"] = x =>
-        {
-          return GetEmbeddedResource("Nancy.LongPoll.Example.Index.html");
-        };
-
-      Get["/poll.js"] = x =>
       {
-        return GetEmbeddedResource("Nancy.LongPoll.poll.js", typeof(PollModule).Assembly);
+        return ContentModule.GetEmbeddedResource("Nancy.LongPoll.Example.Index.html", Assembly.GetExecutingAssembly());
       };
-    }
-
-    private string GetEmbeddedResource(string resourceName, Assembly assembly = null)
-    {
-      if (assembly == null) assembly = Assembly.GetExecutingAssembly();
-
-      using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-      using (StreamReader reader = new StreamReader(stream))
-      {
-        string result = reader.ReadToEnd();
-
-        return result;
-      }
     }
   }
 }

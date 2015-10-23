@@ -18,9 +18,9 @@ protected override void ConfigureApplicationContainer(TinyIoc.TinyIoCContainer c
 }
 ```
 - Add a html to you project with linked poll.js. See Nancy's doc or the LongPoll example project how to make this.
-- Somethere in your html call startPoll().
+- Somewhere in your html call startPoll().
 - Override pollEvent(messageName, stringData) function to handle server events.
-- Call SendMessageToAllClients(...) somethere on the server.
+- Call SendMessageToAllClients(...) somewhere on the server. Of course you can send a message to a specific client or to a specific session . Every separate browser window (or a tab) is considered as a separate client but they can by grouped into sessions (cookie bases by default). You can override the default ISessionProvider implementation in the application IoC container.
 - Done! 
 
 For more detailed information on implementation please see the example project: https://github.com/AIexandr/Nancy.LongPoll/tree/master/Nancy.LongPoll.Example
