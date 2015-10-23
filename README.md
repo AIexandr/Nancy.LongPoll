@@ -1,13 +1,13 @@
 # Nancy.LongPoll
 ## What is it and what is it for at a glance
 This is the long-polling (push, comet etc.) pattern implementation as a Nancy module.
-See more about Long Polling: https://en.wikipedia.org/wiki/Push_technology
+See more about the Long Polling: https://en.wikipedia.org/wiki/Push_technology
 See more about Nancy: http://nancyfx.org/
 
 ##Quick start
 - Create an empty .Net project.
 - Download and reference Nancy's dll's from Nuget or github: https://github.com/NancyFx
-- Download the project from this repository and reference Nancy.LongPoll in your project.
+- Download the Nancy.LongPoll project from this repository and reference Nancy.LongPoll in your project.
 - Create your custom bootstrapper derived from DefaultNancyBootstrapper class. Add PollService to the application IoC container *as a singleton*:
 
 ```C#
