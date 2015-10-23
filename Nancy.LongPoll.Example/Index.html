@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <title>Nance Long Polling Example</title>
+  <script type="text/javascript" src="/poll.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+  <div id="connection-div" style="width:200px;height:80px;padding-top:50px; text-align:center;background-color:gray;margin:10px;color:white"></div>
+  <div id="event-div" style="width:200px;height:80px;padding-top:50px; text-align:center;background-color:gray;margin:10px;color:white"></div>
+
+  <script type="text/javascript">
+    $(function () {
+
+      pollConnected = function () {
+        $('#connection-div').text('Connected');
+      };
+
+      pollDisconnected = function () {
+        $('#connection-div').text('Disconnected');
+      };
+
+      pollEvent = function (messageName, data) {
+        var obj = JSON.parse(data);
+        $('#event-div').text(obj.Counter);
+      };
+
+      startPoll();
+    });
+
+  </script>
+</body>
+</html>
