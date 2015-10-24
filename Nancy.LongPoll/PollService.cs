@@ -11,7 +11,6 @@ namespace Nancy.LongPoll
   public class PollService : Nancy.LongPoll.IPollService
   {
     ILogger _Logger = null;
-    Guid test = Guid.NewGuid();
 
     public PollService(ILogger logger = null)
     {
