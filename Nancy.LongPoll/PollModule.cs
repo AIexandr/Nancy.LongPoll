@@ -14,7 +14,6 @@ namespace Nancy.LongPoll
     #region Nancy's module implementation
     ISessionProvider _SessionProvider = null;
     PollService _PollService = null;
-    TinyIoc.TinyIoCContainer _Container = null;
 
     public PollModule(TinyIoc.TinyIoCContainer container, PollService pollService = null, ISessionProvider sessionProvider = null)
     {
