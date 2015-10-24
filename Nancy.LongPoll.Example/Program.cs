@@ -21,6 +21,7 @@ namespace Nancy.LongPoll.Example
       host.Start();
 
       Process.Start(url);
+      Process.Start(url);
       Console.WriteLine("Press the Enter key for exit...");
       Console.ReadLine();
     }

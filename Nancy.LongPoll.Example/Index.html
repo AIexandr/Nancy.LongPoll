@@ -3,23 +3,68 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <title>Nance Long Polling Example</title>
+  <title>Nancy Long Polling Example</title>
   <script type="text/javascript" src="/poll.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <style type="text/css">
+    a {
+      display: block;
+      background-color: dodgerblue;
+      padding: 10px;
+      width: 300px;
+      margin: 10px;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-family: 'Segoe UI Light';
+      text-align: center;
+    }
+
+      a:hover {
+        background-color: lightskyblue;
+      }
+
+      a:active {
+        background-color: black;
+        transform: translateY(2px);
+      }
+
+    .info-div {
+      width: 300px;
+      padding: 10px;
+      text-align: center;
+      background-color: mediumslateblue;
+      margin: 10px;
+      color: white;
+    }
+
+    .green {
+      background-color:mediumseagreen;
+    }
+    .red {
+      background-color:indianred;
+    }
+  </style>
 </head>
 <body>
-  <div id="connection-div" style="width:200px;height:80px;padding-top:50px; text-align:center;background-color:gray;margin:10px;color:white"></div>
-  <div id="event-div" style="width:200px;height:80px;padding-top:50px; text-align:center;background-color:gray;margin:10px;color:white"></div>
-
+  <div id="connection-div" class="info-div"></div>
+  <div id="event-div" class="info-div"></div>
+  <a href="#" onclick="stopNotifications()">Stop notifications on server</a>
+  <a href="#" onclick="startNotifications()">Start notifications on server</a>
+  <a href="#" onclick="stopPoll()">Stop poll</a>
+  <a href="#" onclick="startPoll()">Start poll</a>
   <script type="text/javascript">
     $(function () {
-
       pollConnected = function () {
         $('#connection-div').text('Connected');
+        $('#connection-div').addClass('green');
+        $('#connection-div').removeClass('red');
       };
 
       pollDisconnected = function () {
         $('#connection-div').text('Disconnected');
+        $('#connection-div').addClass('red');
+        $('#connection-div').removeClass('green');
       };
 
       pollEvent = function (messageName, data) {
@@ -30,6 +75,13 @@
       startPoll();
     });
 
+    var startNotifications = function () {
+      $.post('/Start');
+    }
+
+    var stopNotifications = function () {
+      $.post('/Stop');
+    }
   </script>
 </body>
 </html>
