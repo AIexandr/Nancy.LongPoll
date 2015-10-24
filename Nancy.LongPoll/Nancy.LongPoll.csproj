@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentModule.cs" />
+    <Compile Include="DefaultSessionProvider.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="PollModule.cs" />
     <Compile Include="PollService.cs" />
