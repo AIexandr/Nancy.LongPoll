@@ -26,4 +26,4 @@ protected override void ConfigureApplicationContainer(TinyIoc.TinyIoCContainer c
 For more detailed information on implementation please see the example project: https://github.com/AIexandr/Nancy.LongPoll/tree/master/Nancy.LongPoll.Example
 
 The example screenshot:
-![alt tag]https://habrastorage.org/files/e33/424/245/e33424245e3247c3b80f8fd3d7305c02.png
+![Screenshot](https://habrastorage.org/files/e33/424/245/e33424245e3247c3b80f8fd3d7305c02.png)
