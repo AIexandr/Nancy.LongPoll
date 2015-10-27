@@ -1,7 +1,7 @@
 var isPollActive = false;
 var isPollConnected = false;
 
-var pollEvent = function (data) {
+var pollEvent = function (messageName, data) {
 }
 
 var pollConnected = function () {
