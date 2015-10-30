@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js">
+  </script>
+</head>
+<body>
+  <div>Requests sent:</div>
+  <div id="counter"></div>
+  <div>Requests count on server:</div>
+  <div id="serverCounter"></div>
+  <script type="text/javascript">
+    $(function () {
+      setTimeout(doTest, 5000);
+
+      setInterval(function () {
+        $.get('/TestBulkRequests/RequestsCount').done(function (cnt) {
+          $('#serverCounter').text(cnt);
+        });
+      }, 1000);
+    });
+
+    var doTest = function () {
+      for (var i = 0; i < 10; i++) {
+        $('#counter').text(i);
+        $.get('/TestBulkRequests/Wait')
+        .done(function () {
+          console.log('Done');
+        })
+        .fail(function () {
+          console.log('Fail');
+        });
+      }
+    }
+  </script>
+</body>
+</html>
