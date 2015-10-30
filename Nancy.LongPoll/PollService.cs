@@ -408,10 +408,13 @@ namespace Nancy.LongPoll
 
     public void SendMessage(List<string> clientIds, string messageName, string message)
     {
+      if (clientIds == null) return;
+
       try
       {
         lock (_Clients)
         {
+          clientIds = clientIds.ToList();
           foreach (var clientId in clientIds)
           {
             if (_Clients.ContainsKey(clientId))
@@ -461,10 +464,12 @@ namespace Nancy.LongPoll
 
     public void SendMessageToSessions(List<string> sessIds, string messageName, string message)
     {
+      if (sessIds == null) return;
       try
       {
         lock (_Clients)
         {
+          sessIds = sessIds.ToList();
           List<string> clientIds = new List<string>();
           foreach (var sessId in sessIds)
           {
