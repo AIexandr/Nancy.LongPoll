@@ -11,12 +11,16 @@ namespace Nancy.LongPoll
   public class PollService : Nancy.LongPoll.IPollService
   {
     ILogger _Logger = null;
+    IPollAccessControlService _PollAccessControlService = null;
 
-    public PollService(ILogger logger = null)
+    public PollService(ILogger logger = null,
+                       IPollAccessControlService pollAccessControlService = null)
     {
       if (logger == null) logger = new EmptyLogger();
+      if (pollAccessControlService == null) pollAccessControlService = new EmptyAccessControlService();
 
       _Logger = logger;
+      _PollAccessControlService = pollAccessControlService;
     }
 
     #region Settings
@@ -417,6 +421,12 @@ namespace Nancy.LongPoll
           clientIds = clientIds.ToList();
           foreach (var clientId in clientIds)
           {
+            if (!_ClientIdToSessId.ContainsKey(clientId)
+              || _ClientIdToSessId[clientId].Any(x => !_PollAccessControlService.AllowSendMessage(x, messageName, messageName)))
+            {
+              continue;
+            }
+
             if (_Clients.ContainsKey(clientId))
             {
               var client = _Clients[clientId];
@@ -489,7 +499,7 @@ namespace Nancy.LongPoll
     #endregion
   }
 
-  interface IPollService
+  public interface IPollService
   {
     void SendMessage(System.Collections.Generic.List<string> clientIds, string messageName, string message);
     void SendMessage(string clientId, string messageName, string message);

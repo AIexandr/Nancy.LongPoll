@@ -15,17 +15,18 @@ namespace Nancy.LongPoll
     ISessionProvider _SessionProvider = null;
     PollService _PollService = null;
 
-    public PollModule(TinyIoc.TinyIoCContainer container, PollService pollService = null, ISessionProvider sessionProvider = null)
+    public PollModule(TinyIoc.TinyIoCContainer container, IPollService pollService = null, ISessionProvider sessionProvider = null)
     {
       if (container == null) throw new ArgumentNullException("container");
       if (!(sessionProvider is DefaultSessionProvider)) _SessionProvider = sessionProvider;
 
       if (pollService == null)
       {
-        container.Register<PollService>().AsSingleton();
-        pollService = container.Resolve<PollService>();
+        container.Register<IPollService, PollService>().AsSingleton();
+        pollService = container.Resolve<IPollService>();
       }
-      _PollService = pollService;
+      _PollService = pollService as PollService;
+      if (pollService == null) throw new ApplicationException("Support Nany.LongPoll.PollService implementation only");
 
       Get["/Poll/Register"] = x =>
       {
