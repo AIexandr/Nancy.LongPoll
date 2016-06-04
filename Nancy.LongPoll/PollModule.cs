@@ -46,7 +46,7 @@ namespace Nancy.LongPoll
         string clientId = Request.Query.clientId;
         ulong seqCode = Request.Query.seqCode;
 
-        return Response.AsJson(_PollService.Wait(clientId, seqCode));
+        return Response.AsText(JsonConvert.SerializeObject(_PollService.Wait(clientId, seqCode)), "application/json");
       };
     }
     #endregion
